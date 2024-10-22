@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # Local Apps
-    'IntegritasTecnica.apps.users'
+    'IntegritasTecnica.apps.users',
+    'IntegritasTecnica.apps.pdf_inverter'
 ]
 
 REST_FRAMEWORK = {

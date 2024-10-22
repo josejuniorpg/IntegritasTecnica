@@ -11,6 +11,8 @@ urlpatterns = [
     path('api/auth/login/', obtain_auth_token, name='login'),
     path('api/users/', include('IntegritasTecnica.apps.users.api.urls')),
 
+    path('pdf/', include('IntegritasTecnica.apps.pdf_inverter.urls')),
+
 ]
 
 # Allows to serve media files in development
