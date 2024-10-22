@@ -5,7 +5,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('IntegritasTecnica.apps.users.urls')),  # Incluye las URLs de tu aplicación
+    path('users/', include('IntegritasTecnica.apps.users.urls')),
+    path('', include('IntegritasTecnica.apps.home.urls')),
 
 ]
 
