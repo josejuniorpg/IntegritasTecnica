@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        {% block title %}Integritas tecnica.{% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% endblock %}
+</head>
+<body>
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
+
+

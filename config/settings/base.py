@@ -50,7 +50,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'IntegritasTecnica/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -110,6 +110,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [(BASE_DIR / 'IntegritasTecnica/static')]
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'  # Only for development.
+MEDIA_ROOT = [(BASE_DIR / 'IntegritasTecnica/media')]  # Only for development.
 
 STATIC_URL = 'static/'
 
