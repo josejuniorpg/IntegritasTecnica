@@ -3,7 +3,7 @@ from .base import *
 
 # Initialize environment variables
 env = environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DEBUG = True
 
@@ -13,10 +13,22 @@ INSTALLED_APPS += [
     'django_extensions',
 ]
 
-# Database
+# Database SQlite
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+#Databe postgres.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('USER_DATABASE'),
+        'PASSWORD': env('PASSWORD_DATABASE'),
+        'HOST': env('HOST_DATABASE'),
+        'PORT': env('PORT_DATABASE'),
     }
 }
