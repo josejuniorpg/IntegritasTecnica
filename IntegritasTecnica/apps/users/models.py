@@ -5,12 +5,17 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 # Third-party imports
 from model_utils.models import TimeStampedModel
+from django.core.validators import RegexValidator
 
 
 # Create your models here.
 
 class User(AbstractUser, TimeStampedModel):
     """Default user for TwoScoPoe. The default user type is  common."""
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message=_("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    )
 
     class Types(models.TextChoices):
         SUPERUSER = "SUPERUSER", "Superuser"
@@ -24,13 +29,15 @@ class User(AbstractUser, TimeStampedModel):
     type = models.CharField(
         _("User Type"), max_length=50, choices=Types.choices, default=base_type)
     profile_image = models.ImageField(upload_to='users/profileImages', blank=True, null=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)  # Optional field
 
-    def save(self, *args, **kwargs):
-        if self.is_superuser:
-            self.type = self.Types.SUPERUSER
-        if not self.id:
-            self.type = self.base_type
-        return super().save(*args, **kwargs)
+
+def save(self, *args, **kwargs):
+    if self.is_superuser:
+        self.type = self.Types.SUPERUSER
+    if not self.id:
+        self.type = self.base_type
+    return super().save(*args, **kwargs)
 
 
 class Spy(models.Model):
