@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ view.object.pk|yesno:"Editar Usuario,Nuevo Usuario" }}{% endblock %}
+
+{% block header %}{{ view.object.pk|yesno:"Editar Usuario,Nuevo Usuario" }}{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- El campo phone_number ya se agregará automáticamente si usas {{ form.as_p }} -->
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'user_list' %}">Volver a la lista</a>
+{% endblock %}
